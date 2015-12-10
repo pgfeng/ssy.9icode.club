@@ -1,0 +1,1 @@
+<?php exit;/*a:1:{i:0;a:4:{s:8:"contable";s:14:"module_article";i:0;s:14:"module_article";s:11:"con_modelid";s:2:"59";i:1;s:2:"59";}}*/

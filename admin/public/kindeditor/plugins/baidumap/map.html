@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Baidu Maps</title>
+		<style>
+			html { height: 100% }
+			body { height: 100%; margin: 0; padding: 0; background-color: #FFF }
+		</style>
+		<script charset="utf-8" src="http://api.map.baidu.com/api?v=2.0&ak=LoN38VBV5HL1dDVQGMI9ZPlR"></script>
+        <script type="text/javascript">
+        </script>
+		<script>
+			var map, geocoder, marker;
+            // 百度地图API功能
+            function initialize() {
+                map = new BMap.Map("map_canvas");
+                var point = new BMap.Point(116.400244, 39.92556);
+                map.centerAndZoom(point, 15);
+                marker = new BMap.Marker(point);// 创建标注
+                map.addOverlay(marker);             // 将标注添加到地图中
+                //marker.disableDragging();           // 不可拖拽
+                marker.enableDragging();
+                var gc = new BMap.Geocoder();
+                gc.getLocation(point, function(rs){
+                    var addComp = rs.addressComponents;
+                    var address = [addComp.city].join('');
+                    parent.document.getElementById("kindeditor_plugin_map_address").value = address;
+                });
+            }
+//			function initialize() {
+//				map = new BMap.Map('map_canvas');
+//				var point = new BMap.Point(121.473704, 31.230393);
+//				map.centerAndZoom(point, 11);
+//				map.addControl(new BMap.NavigationControl());
+//				map.enableScrollWheelZoom();
+//
+//				var gc = new BMap.Geocoder();
+//				gc.getLocation(point, function(rs){
+//					var addComp = rs.addressComponents;
+//					var address = [addComp.city].join('');
+//					parent.document.getElementById("kindeditor_plugin_map_address").value = address;
+//				});
+//			}
+			function search(address) {
+				if (!map) return;
+				var local = new BMap.LocalSearch(map, {
+					renderOptions: {
+						map: map,
+						autoViewport: true,
+						selectFirstResult: false
+					},
+                    onSearchComplete:myFun
+				});
+      //            map.clearOverlays();    //清除地图上所有覆盖物
+                function myFun(){
+                    map.clearOverlays();    //清除地图上所有覆盖物
+                    //var point = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                    //var marker = new BMap.Marker(point);// 创建标注
+                    //addMarker(marker);             // 将标注添加到地图中
+                    //marker.disableDragging();           // 不可拖拽
+                    marker.enableDragging();
+                    //alert(1);
+                }
+//                var local = new BMap.LocalSearch(map, { //智能搜索
+//                    onSearchComplete: myFun
+//                });
+                //local.search(myValue);
+                local.search(address);
+                marker.enableDragging();
+			}
+		</script>
+	</head>
+	<body onload="initialize()">
+		<div id="map_canvas" style="width:100%; height:100%"></div>
+	</body>
+</html>

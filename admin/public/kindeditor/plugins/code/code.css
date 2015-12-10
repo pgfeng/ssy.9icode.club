@@ -1,0 +1,6 @@
+pre[class^=brush]{
+ border:2px solid #555;
+ border-left:8px solid #000;
+ background:#ccc;
+ padding:8px;
+}

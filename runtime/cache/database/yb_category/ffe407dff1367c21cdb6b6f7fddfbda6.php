@@ -1,0 +1,1 @@
+<?php exit;/*a:1:{i:0;a:8:{s:9:"catetable";s:15:"module_category";i:0;s:15:"module_category";s:11:"cat_modelid";s:2:"61";i:1;s:2:"61";s:5:"catid";s:2:"47";i:2;s:2:"47";s:3:"cid";s:2:"23";i:3;s:2:"23";}}*/
